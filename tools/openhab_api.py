@@ -14,8 +14,8 @@ class OpenHABAPI:
     """
 
     def __init__(self, base_url: str | None = None, token: str | None = None):
-        self.base_url = base_url or os.environ.get("OPENHAB_URL", "http://localhost:8080")
-        self.token = token or os.environ.get("OPENHAB_TOKEN")
+        self.base_url = (base_url or os.environ.get("OPENHAB_URL", "http://localhost:8080")).rstrip("/")
+        self.token = token or os.environ.get("OPENHAB_API_TOKEN") or os.environ.get("OPENHAB_TOKEN")
 
     def _headers(self) -> Dict[str, str]:
         headers: Dict[str, str] = {"Accept": "application/json"}
@@ -33,11 +33,42 @@ class OpenHABAPI:
         resp.raise_for_status()
         return resp.json()
 
-    def get_item(self, name: str) -> Dict[str, Any]:
-        """Return a single item description from /rest/items/{name}."""
-        resp = requests.get(f"{self.base_url}/rest/items/{name}", headers=self._headers(), timeout=30)
+    def get_item(self, name: str) -> Dict[str, Any] | None:
+        """Return a single item description from /rest/items/{name}, or None if 404."""
+        try:
+            resp = requests.get(f"{self.base_url}/rest/items/{name}", headers=self._headers(), timeout=30)
+            resp.raise_for_status()
+            return resp.json()
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 404:
+                return None
+            raise
+
+    def create_item(
+        self,
+        name: str,
+        type: str,
+        *,
+        label: str | None = None,
+        tags: List[str] | None = None,
+        group_names: List[str] | None = None,
+    ) -> Dict[str, Any]:
+        """Create an item via PUT /rest/items/{name}. Fails if item already exists (use update_item to change)."""
+        payload: Dict[str, Any] = {"type": type, "name": name}
+        if label is not None:
+            payload["label"] = label
+        if tags is not None:
+            payload["tags"] = tags
+        if group_names is not None:
+            payload["groupNames"] = group_names
+        resp = requests.put(
+            f"{self.base_url}/rest/items/{name}",
+            headers={**self._headers(), "Content-Type": "application/json"},
+            json=payload,
+            timeout=30,
+        )
         resp.raise_for_status()
-        return resp.json()
+        return self.get_item(name) or payload
 
     def send_command(self, item_name: str, command: str) -> None:
         """

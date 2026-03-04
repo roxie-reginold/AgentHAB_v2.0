@@ -17,7 +17,8 @@ import mcp.client.stdio as mcp_stdio
 from mcp.types import CallToolResult, TextContent
 
 # Add openhab-mcp to path to import its models
-_openhab_mcp_path = Path(__file__).parent.parent / "openhab-mcp"
+# The openhab-mcp folder is a sibling to openHABAgents, not inside it.
+_openhab_mcp_path = Path(__file__).parent.parent.parent / "openhab-mcp"
 if str(_openhab_mcp_path) not in sys.path:
     sys.path.insert(0, str(_openhab_mcp_path))
 
@@ -85,7 +86,9 @@ class SystemContextFetcher:
 
         # Determine how to launch/connect to the MCP server.
         # By default, we spawn the local openhab_mcp_server.py via stdio.
-        default_server_script = Path(__file__).parent.parent / "openhab-mcp" / "openhab_mcp_server.py"
+        # The openhab-mcp folder is a sibling to openHABAgents, not inside it.
+        project_root = Path(__file__).parent.parent  # openHABAgents/
+        default_server_script = project_root.parent / "openhab-mcp" / "openhab_mcp_server.py"
 
         # Resolve command and args, robust to quoted/space-separated env values
         provided_cmd = mcp_command
@@ -124,18 +127,27 @@ class SystemContextFetcher:
         if result.isError:
             raise RuntimeError(f"MCP tool '{name}' returned an error.")
 
+        data = None
         if result.structuredContent is not None:
-            return result.structuredContent
+            data = result.structuredContent
+        else:
+            # Fallback: try to parse JSON from the first text content block.
+            for block in result.content:
+                if isinstance(block, TextContent):
+                    try:
+                        data = json.loads(block.text)
+                        break
+                    except Exception:
+                        continue
 
-        # Fallback: try to parse JSON from the first text content block.
-        for block in result.content:
-            if isinstance(block, TextContent):
-                try:
-                    return json.loads(block.text)
-                except Exception:
-                    continue
+        if data is None:
+            raise RuntimeError(f"MCP tool '{name}' did not return structured JSON content.")
 
-        raise RuntimeError(f"MCP tool '{name}' did not return structured JSON content.")
+        # MCP FastMCP wraps tool returns in a "result" key - unwrap if present
+        if isinstance(data, dict) and "result" in data and len(data) == 1:
+            data = data["result"]
+
+        return data
 
     async def _fetch_all_async(self) -> SystemContext:
         """Async helper to fetch items, things, and rules from MCP server + local .rules files."""

@@ -2,8 +2,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any, Dict, List
+
+# Ensure project root is on path when run as script (e.g. python baseline/run_baseline.py)
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
 
@@ -24,9 +30,10 @@ def run_baseline_on_dataset(
     dataset_path: Path,
     output_path: Path,
     *,
-    model: str = "gpt-4o-mini",
+    model: str = "gemini-3-flash-preview",
     temperature: float = 1.5,
     rules_dir: Path | None = None,
+    only_id: int | None = None,
 ) -> None:
     """
     Run a single-shot LLM baseline on the given dataset.
@@ -46,6 +53,11 @@ def run_baseline_on_dataset(
     """
     print(f"Loading dataset from {dataset_path} ...")
     examples = load_dataset(dataset_path)
+    if only_id is not None:
+        examples = [e for e in examples if e.get("id") == only_id]
+        if not examples:
+            raise SystemExit(f"No example with id={only_id} in dataset.")
+        print(f"Running only id={only_id} ({len(examples)} example(s)).")
 
     generator = PolicyGeneratorAgent(model=model, temperature=temperature)
     results: List[Dict[str, Any]] = []
@@ -127,14 +139,30 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         type=str,
-        default="gpt-4o-mini",
-        help="OpenAI chat model name (default: gpt-4o-mini).",
+        default="gemini-3-flash-preview",
+        help="Gemini chat model name (default: gemini-3-flash-preview).",
     )
     parser.add_argument(
         "--temperature",
         type=float,
         default=1.5,
         help="Sampling temperature for the LLM (default: 1.5, matching main pipeline).",
+    )
+    parser.add_argument(
+        "--rules-dir",
+        type=str,
+        default=None,
+        help=(
+            "Directory for per-example .rules files. If omitted, uses "
+            "datasets/results/<dataset-base>/ (see --output)."
+        ),
+    )
+    parser.add_argument(
+        "--only-id",
+        type=int,
+        default=None,
+        metavar="ID",
+        help="If set, run only the example with this id (useful for testing).",
     )
     return parser.parse_args()
 
@@ -153,9 +181,12 @@ def main() -> None:
         output_path = results_root / f"{dataset_path.stem}_baseline_results.json"
 
     # Directory for individual .rules files
-    stem = dataset_path.stem
-    base_name = stem[:-len("_dataset")] if stem.endswith("_dataset") else stem
-    rules_dir = results_root / base_name
+    if args.rules_dir is not None:
+        rules_dir = Path(args.rules_dir)
+    else:
+        stem = dataset_path.stem
+        base_name = stem[:-len("_dataset")] if stem.endswith("_dataset") else stem
+        rules_dir = results_root / base_name
 
     run_baseline_on_dataset(
         dataset_path=dataset_path,
@@ -163,6 +194,7 @@ def main() -> None:
         model=args.model,
         temperature=args.temperature,
         rules_dir=rules_dir,
+        only_id=args.only_id,
     )
 
 

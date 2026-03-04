@@ -131,7 +131,8 @@ def run_generation_loop(
                     source=f"context_validator attempt {attempt}",
                     message=context_validation.as_feedback_entry()
                 )
-                last_validation = None  # Don't save context validation as last validation
+                # Keep syntax validation so we can return (generation, validation, False) instead of raising
+                last_validation = validation
                 continue
             else:
                 print("Context Validator: PASS")
@@ -154,12 +155,13 @@ def run_generation_loop(
 
 
 def maybe_deploy_via_mcp(rule_code: str, *, request: str, destination_name: str) -> None:
-    """Attempt to push the validated rule to the configured MCP server."""
-    mcp_url = os.environ.get("OPENHAB_MCP_URL")
-    if not mcp_url:
-        print("MCP deployment skipped (OPENHAB_MCP_URL not set).")
+    """Attempt to deploy the validated rule to openHAB via MCP protocol."""
+    # Check if deployment is disabled
+    if os.environ.get("DISABLE_MCP_DEPLOYMENT", "").lower() == "true":
+        print("MCP deployment disabled via DISABLE_MCP_DEPLOYMENT.")
         return
 
+    print(f"Deploying rule '{destination_name}' to openHAB via MCP...")
     success, message = deploy_rule_via_mcp(
         rule_code,
         rule_name=destination_name,

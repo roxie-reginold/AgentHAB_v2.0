@@ -52,15 +52,17 @@ class ContextValidatorAgent:
 Your role is to validate candidate openHAB DSL rules against the LIVE SYSTEM STATE to ensure:
 1. All referenced items actually exist in the system
 2. Item types are compatible with actions (e.g., can't dim a Switch, must use Dimmer)
-3. No conflicts with existing rules (duplicate triggers, contradictory actions)
+3. No conflicts with DEPLOYED rules (duplicate triggers, contradictory actions)
 4. No security vulnerabilities or dangerous patterns
 5. Things backing items are online and functional
 
 You have access to:
 - Complete list of items with their types and current states
 - Complete list of things with their status
-- All existing rules (both live deployed and locally generated)
+- All DEPLOYED rules currently running in openHAB (for conflict detection)
 - The candidate rule to validate
+
+IMPORTANT: Only check for conflicts against DEPLOYED rules in openHAB. Ignore any local files or drafts.
 
 IMPORTANT SECURITY REASONING:
 - Use your knowledge to identify dangerous automation patterns (HVAC conflicts, water hazards, etc.)
@@ -204,12 +206,13 @@ Do NOT include markdown, code fences, or additional commentary."""
         else:
             lines.append("  (No things in system)")
         
-        # 3. Existing rules section - crucial for conflict detection
-        lines.append("\n=== EXISTING RULES ===")
+        # 3. Deployed rules section - crucial for conflict detection
+        # NOTE: Only check DEPLOYED (live) rules for conflicts. Local .rules files
+        # are just drafts on disk and should not trigger conflict warnings.
+        lines.append("\n=== DEPLOYED RULES IN OPENHAB ===")
         
-        # Live rules
         if context.live_rules:
-            lines.append(f"Live rules in openHAB ({len(context.live_rules)}):")
+            lines.append(f"Currently deployed rules ({len(context.live_rules)}):")
             for rule in context.live_rules[:10]:  # Show first 10
                 lines.append(f"  - {rule.name or rule.uid}")
                 if rule.triggers:
@@ -219,16 +222,8 @@ Do NOT include markdown, code fences, or additional commentary."""
                     lines.append(f"    Triggers: {trigger_summary}")
             if len(context.live_rules) > 10:
                 lines.append(f"    ... and {len(context.live_rules) - 10} more")
-        
-        # Local rules (parsed from generated_rules/)
-        if context.local_rules:
-            lines.append(f"\nLocal generated rules ({len(context.local_rules)}):")
-            for rule in context.local_rules:
-                lines.append(f"  - {rule.name}")
-                if rule.trigger_items:
-                    lines.append(f"    Triggers on: {', '.join(rule.trigger_items)}")
-                if rule.action_items:
-                    lines.append(f"    Acts on: {', '.join(rule.action_items)}")
+        else:
+            lines.append("  (No rules currently deployed in openHAB)")
         
         return "\n".join(lines)
     
