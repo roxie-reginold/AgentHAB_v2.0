@@ -1,0 +1,742 @@
+[
+  {
+    "id": 0,
+    "text": "If the temperature in the bedroom drops below 68 degrees Fahrenheit, then switch on the bedroom heater."
+  },
+  {
+    "id": 1,
+    "text": "If the front door is unlocked and the current time is after sunset, then turn on the porch light."
+  },
+  {
+    "id": 2,
+    "text": "If the front door is unlocked and the current time is after midnight and before 6:00 AM, then turn on the bedroom lamp and restore the thermostat to its normal temperature setting."
+  },
+  {
+    "id": 3,
+    "text": "If someone opens the front door, then turn on the front door hue bulb and set it to the color blue."
+  },
+  {
+    "id": 4,
+    "text": "If the temperature in the bedroom is higher than 75°F and no one is currently in the room, then turn on the bedroom fan."
+  },
+  {
+    "id": 5,
+    "text": "If the water sensor detects wetness in the laundry room and the washing machine is running, then send a notification to the homeowner and turn off the washing machine using the Water Wet Handler."
+  },
+  {
+    "id": 6,
+    "text": "If the front door is closed and locked and the sun sets, then turn on the porch light."
+  },
+  {
+    "id": 7,
+    "text": "If there has been no motion detected in the bedroom for 10 minutes and the current time is after 10 pm, then turn off the bedroom lights."
+  },
+  {
+    "id": 8,
+    "text": "If the front door is closed and it is after 10 pm, then lock the front door."
+  },
+  {
+    "id": 9,
+    "text": "If the temperature in the bedroom is below 68 degrees Fahrenheit, then turn on the bedroom heater."
+  },
+  {
+    "id": 10,
+    "text": "camera on"
+  },
+  {
+    "id": 11,
+    "text": "If the front door is unlocked and motion is active on the front porch motion sensor, then turn on the entryway light."
+  },
+  {
+    "id": 12,
+    "text": "If the water sensor detects water in the basement and the current time is between 7 AM to 9 PM, then notify me immediately through a smartphone notification."
+  },
+  {
+    "id": 13,
+    "text": "If the basement water sensor detects water and the sump pump is not already on, then turn on the sump pump to remove the water."
+  },
+  {
+    "id": 14,
+    "text": "If it is 6:00 AM on a weekday and the bedroom is occupied, then set the bedroom lamp level to 50%."
+  },
+  {
+    "id": 15,
+    "text": "If the front door is unlocked and the time is between 9:00AM and 5:00PM, then play the \"Work Mix\" playlist on the living room Sonos music player."
+  },
+  {
+    "id": 16,
+    "text": "If there is no motion detected by the bedroom motion sensor for 10 minutes and the current time is after 11:00 PM, then turn off the bedroom TV."
+  },
+  {
+    "id": 17,
+    "text": "If the front door opens and the presence sensor is not detected, then turn on the hallway lights."
+  },
+  {
+    "id": 18,
+    "text": "If the illuminance level in the bedroom is below a certain threshold and it is after sunset, then turn on the bedroom lights."
+  },
+  {
+    "id": 19,
+    "text": "If the power consumption of the washing machine is greater than 10 watts for more than 5 minutes, then turn on the smart outlet that controls the dryer."
+  },
+  {
+    "id": 20,
+    "text": "If the button is pressed and the current time is between 9 AM and 5 PM, then turn on the office lights."
+  },
+  {
+    "id": 21,
+    "text": "If the motion sensor in the laundry room stays inactive for more than 10 minutes and the washing machine is not in use, then send a notification to remind the user to move the laundry to the dryer."
+  },
+  {
+    "id": 22,
+    "text": "If the illuminance level in the bedroom is below 30 lux and motion is detected, then turn on the bedroom light."
+  },
+  {
+    "id": 23,
+    "text": "If a water leak is detected by the water leak sensor and the valve is open, then close the valve to stop the water flow."
+  },
+  {
+    "id": 24,
+    "text": "If a door is unlocked and opened, then turn on the front door camera."
+  },
+  {
+    "id": 25,
+    "text": "If the front door has been unlocked and opened, and the user enters the correct security code on the keypad, then turn off the security alarm."
+  },
+  {
+    "id": 26,
+    "text": "If the temperature in the bedroom is above 75 degrees Fahrenheit and the humidity is above 50%, then turn on the bedroom fan and the bedroom air purifier outlets."
+  },
+  {
+    "id": 27,
+    "text": "If the front door is unlocked and the presence sensor has detected that no one is at home, then send a notification to the homeowner's smartphone requesting confirmation to lock the front door. If no confirmation is received within 2 minutes, then automatically lock the front door. This is an example of a presence handler rule that can ensure that the front door is always locked when nobody is at home."
+  },
+  {
+    "id": 28,
+    "text": "If the SmartThings presence sensor detects that someone has entered the bedroom and the time is between 6:00 AM and 10:00 PM, then set the bedroom lights to the \"active\" scene."
+  },
+  {
+    "id": 29,
+    "text": "If no one is detected in the home and the time is after 8:00 AM, then set the thermostat to an energy-saving temperature."
+  },
+  {
+    "id": 30,
+    "text": "If the front door is closed and it is between the hours of 10:00 PM and 6:00 AM, then lock the front door."
+  },
+  {
+    "id": 31,
+    "text": "If the back door contact sensor is opened, then trigger the alarm and send a notification to my phone."
+  },
+  {
+    "id": 32,
+    "text": "If both my mobile phone and my partner's mobile phone are not present at home, then set the thermostat to an energy-saving temperature."
+  },
+  {
+    "id": 33,
+    "text": "If the current time is 7:00 a.m. and the user's smartphone is detected as being within a certain distance from the home, then turn on the coffee maker."
+  },
+  {
+    "id": 34,
+    "text": "If the front door is unlocked and motion is detected on the front porch, then capture an image using the front door camera and send it to the homeowner's phone."
+  },
+  {
+    "id": 35,
+    "text": "If the front door contact sensor is opened and the mode is set to \"away,\" then send a notification to the homeowner's mobile phone."
+  },
+  {
+    "id": 36,
+    "text": "If everyone leaves the house and the location mode is set to 'Away', then turn off all lights and lock the front door."
+  },
+  {
+    "id": 37,
+    "text": "If the smoke sensor detects smoke, then turn on all the lights in the house and send an alert to the homeowner's phone."
+  },
+  {
+    "id": 38,
+    "text": "If there is no motion detected by the bedroom motion sensor for 30 minutes and the current time is before 11 PM, then turn off the bedroom outlet."
+  },
+  {
+    "id": 39,
+    "text": "If the acceleration active handler is triggered for the front door sensor and the mode is set to away, then send a notification and turn on all lights to deter potential intruders."
+  },
+  {
+    "id": 40,
+    "text": "If a water leak is detected by the water sensor in the laundry room, then send a notification to the homeowner's smartphone and turn off the main water valve to prevent any further damage."
+  },
+  {
+    "id": 41,
+    "text": "If there is no motion detected in the bedroom for 30 minutes and the current time is after 11:00 PM, then turn off the bedroom outlets."
+  },
+  {
+    "id": 42,
+    "text": "If the front door is unlocked and the current time is between sunset and sunrise, then turn on the porch light."
+  },
+  {
+    "id": 43,
+    "text": "If motion is detected by the front door motion sensor and the door lock is unlocked, then turn on the porch light for 5 minutes."
+  },
+  {
+    "id": 44,
+    "text": "If the front door is unlocked and the current time is between 10PM and 6AM, then send an SMS message to the homeowner."
+  },
+  {
+    "id": 45,
+    "text": "If the front door is unlocked and the current location mode is \"Away,\" then send a notification to the homeowner's phone."
+  },
+  {
+    "id": 46,
+    "text": "If the front door contact sensor is opened, then send a notification to the homeowner's smartphone with a message."
+  },
+  {
+    "id": 47,
+    "text": "If the temperature in the bedroom drops below 65 degrees Fahrenheit and the time is between 10 pm and 6 am, then turn on the bedroom heater."
+  },
+  {
+    "id": 48,
+    "text": "If any window is opened and the temperature in the room exceeds 72°F, then turn on the air conditioner."
+  },
+  {
+    "id": 49,
+    "text": "If the temperature in the bedroom rises above 75 degrees Fahrenheit, then turn on the bedroom ceiling fan."
+  },
+  {
+    "id": 50,
+    "text": "If motion is detected by the bathroom motion sensor and the bathroom fan switch is off, then turn on the fan for 10 minutes and mark the bathroom as \"active\" in the SmartThings app."
+  },
+  {
+    "id": 51,
+    "text": "If the humidity in the bathroom is higher than 60 percent, then turn on the bathroom exhaust fan."
+  },
+  {
+    "id": 52,
+    "text": "If the humidity level in the bathroom exceeds 75% for more than 5 minutes, then turn on the bathroom exhaust fan to remove excess moisture."
+  },
+  {
+    "id": 53,
+    "text": "If the relative humidity measurement in the bathroom exceeds 70% for more than 10 minutes, then turn on the bathroom exhaust fan."
+  },
+  {
+    "id": 54,
+    "text": "If no motion is detected by the bedroom motion sensor for 10 minutes and the current time is after 10 pm, then turn off all lights in the bedroom."
+  },
+  {
+    "id": 55,
+    "text": "If the front door is unlocked and the time is after 8 pm, then send a push notification to the homeowner to remind them to lock the door and handle Things before going to bed."
+  },
+  {
+    "id": 56,
+    "text": "If the front door is unlocked for more than 5 minutes, then send an SMS to the homeowner alerting them of the issue."
+  },
+  {
+    "id": 57,
+    "text": "If the temperature in the bedroom is above 75 degrees Fahrenheit and the current mode is \"home\", then turn on the bedroom ceiling fan."
+  },
+  {
+    "id": 58,
+    "text": "If the temperature in the living room is higher than 75 degrees Fahrenheit, then lower the thermostat by 2 degrees Fahrenheit."
+  },
+  {
+    "id": 59,
+    "text": "If the humidity in the bathroom is greater than 70%, then turn on the bathroom exhaust fan."
+  },
+  {
+    "id": 60,
+    "text": "If the temperature sensor in the kitchen reads above 72 degrees Fahrenheit, then turn on the kitchen exhaust fan to vent out hot air."
+  },
+  {
+    "id": 61,
+    "text": "If the 'Good Night' app touch is executed, then turn off all the lights, close the blinds, and set the thermostat to a specific temperature."
+  },
+  {
+    "id": 62,
+    "text": "If there has been no motion detected in the bedroom for 10 minutes and the current time is after 10 PM, then turn off the bedroom lights."
+  },
+  {
+    "id": 63,
+    "text": "If motion is detected by the front door sensor and it is after sunset, then turn on the porch light for 5 minutes."
+  },
+  {
+    "id": 64,
+    "text": "If the humidity level in the bathroom reaches 70% or higher, then turn on the bathroom exhaust fan to reduce humidity."
+  },
+  {
+    "id": 65,
+    "text": "If the touch sensor is triggered and it's after 8 pm, then turn on the nightstand lamp."
+  },
+  {
+    "id": 66,
+    "text": "If the humidity level in the bathroom is higher than 60% for more than 5 minutes, then turn on the bathroom exhaust fan to reduce humidity and prevent mold and mildew growth."
+  },
+  {
+    "id": 67,
+    "text": "If the relative humidity measurement in the bathroom is greater than 70%, then turn on the bathroom exhaust fan."
+  },
+  {
+    "id": 68,
+    "text": "If any window or door sensor is opened while the thermostat is on, then turn off the thermostat to save energy."
+  },
+  {
+    "id": 69,
+    "text": "If the water sensor detects water in the laundry room, then shut off the main water valve to prevent further water damage."
+  },
+  {
+    "id": 70,
+    "text": "If the front door is opened while the alarm is set to away mode, then set off the siren and send a notification to the homeowner's phone."
+  },
+  {
+    "id": 71,
+    "text": "If the back door is opened and it's between sunset and sunrise, then switch on the back porch light."
+  },
+  {
+    "id": 72,
+    "text": "If smoke is detected by the Smoke Detector, then turn on all lights in the house, send a mobile notification to the homeowner, and trigger an alarm siren."
+  },
+  {
+    "id": 73,
+    "text": "If there is no motion detected for 10 minutes in the bedroom and the bedroom lamp is currently on, then turn off the bedroom lamp."
+  },
+  {
+    "id": 74,
+    "text": "If the kitchen motion sensor detects motion and it is between 6:00 am and 9:00 am, then turn on the smart coffee maker to start brewing the coffee."
+  },
+  {
+    "id": 75,
+    "text": "If the front door acceleration sensor detects movement and the security mode is set to away, then send a notification to the homeowner's smartphone."
+  },
+  {
+    "id": 76,
+    "text": "If the temperature in the living room is above 75 degrees Fahrenheit, and the air conditioning is not already turned on, then turn on the air conditioner in 'cold' mode until the temperature reaches 72 degrees Fahrenheit."
+  },
+  {
+    "id": 77,
+    "text": "If the last person leaves home and the location Mode is set to 'Away', then activate the 'Away' mode for the SmartThings Hub."
+  },
+  {
+    "id": 78,
+    "text": "If the water leak sensor detects moisture, then turn off the main water supply valve to prevent flooding."
+  },
+  {
+    "id": 79,
+    "text": "If the front door is locked and the mode is set to \"Away\", then unlock the front door when a valid user code is entered on the keypad."
+  },
+  {
+    "id": 80,
+    "text": "If the bedroom window is open and the current time is past 10 pm, then turn off the bedroom lights."
+  },
+  {
+    "id": 81,
+    "text": "If the carbon monoxide detector detects a high level of carbon monoxide in the home, then turn on all connected smart lights, send a notification to the homeowner's phone, and activate a loud alarm to ensure the safety of the occupants."
+  },
+  {
+    "id": 82,
+    "text": "If the temperature in the bedroom rises above 75 degrees Fahrenheit, then turn on the bedroom fan using the temperature handler."
+  },
+  {
+    "id": 83,
+    "text": "If the current time is after 6 am and the SmartThings presence sensor detects that I have left the bed, then turn on the coffee maker."
+  },
+  {
+    "id": 84,
+    "text": "If the humidity level in the bathroom is higher than 60%, then turn on the bathroom exhaust fan."
+  },
+  {
+    "id": 85,
+    "text": "If the humidity sensor's reading becomes greater than 80%, then turn off the bathroom fan."
+  },
+  {
+    "id": 86,
+    "text": "If the acceleration sensor detects movement along all three axis, then turn on the hallway lights."
+  },
+  {
+    "id": 87,
+    "text": "If the front door sensor is opened, then send a notification to your smartphone."
+  },
+  {
+    "id": 88,
+    "text": "If the front door is unlocked, then send a notification to the homeowner."
+  },
+  {
+    "id": 89,
+    "text": "If the front door is unlocked after 11 PM, then send a push notification to my phone."
+  },
+  {
+    "id": 90,
+    "text": "If the front door is unlocked, then send a notification to my phone."
+  },
+  {
+    "id": 91,
+    "text": "If the front door is unlocked at 10 pm, then turn on the hallway light."
+  },
+  {
+    "id": 92,
+    "text": "If the front door sensor is opened, then turn on the porch light for 5 minutes."
+  },
+  {
+    "id": 93,
+    "text": "If the front door is unlocked and it is after 10 PM, then send a notification to the homeowner."
+  },
+  {
+    "id": 94,
+    "text": "If the front door is unlocked after 9 pm, then send a push notification to the homeowner."
+  },
+  {
+    "id": 95,
+    "text": "If the front door is unlocked after 10pm, then send a notification to my smartphone."
+  },
+  {
+    "id": 96,
+    "text": "If the front door is unlocked, then turn on the porch light."
+  },
+  {
+    "id": 97,
+    "text": "If the front door is unlocked after sunset, then turn on the porch lights."
+  },
+  {
+    "id": 98,
+    "text": "If the front door is unlocked after 6 pm, then turn on the porch light."
+  },
+  {
+    "id": 99,
+    "text": "If the front door is unlocked after 9 PM, then turn on the foyer light for 5 minutes."
+  },
+  {
+    "id": 100,
+    "text": "If the front door is unlocked, then send a notification to my phone."
+  },
+  {
+    "id": 101,
+    "text": "If the front door is unlocked, then turn on the porch light."
+  },
+  {
+    "id": 102,
+    "text": "If the front door is unlocked, then turn on the front porch light."
+  },
+  {
+    "id": 103,
+    "text": "If the front door is unlocked, then send a notification to my phone."
+  },
+  {
+    "id": 104,
+    "text": "If the front door is unlocked after 10 PM, then turn on the porch lights."
+  },
+  {
+    "id": 105,
+    "text": "If the front door is unlocked and it is after 10 pm, then turn on the porch light."
+  },
+  {
+    "id": 106,
+    "text": "If the front door is unlocked after 10pm, then turn on the bedroom light."
+  },
+  {
+    "id": 107,
+    "text": "If the front door is unlocked after 9pm, then send a notification to the homeowner."
+  },
+  {
+    "id": 108,
+    "text": "If the front door is unlocked after 9pm, then turn on the porch light."
+  },
+  {
+    "id": 109,
+    "text": "If the front door is unlocked, then send a notification to the homeowner via the SmartThings app."
+  },
+  {
+    "id": 110,
+    "text": "If the front door is unlocked after 10 PM, then send a notification to the homeowner's phone."
+  },
+  {
+    "id": 111,
+    "text": "If the front door is unlocked and it is after 10 pm, then send a notification to my phone."
+  },
+  {
+    "id": 112,
+    "text": "If the front door is unlocked after 10:00 pm, then turn on the entryway light."
+  },
+  {
+    "id": 113,
+    "text": "If the front door unlocks, then turn on the hallway light."
+  },
+  {
+    "id": 114,
+    "text": "If the front door is unlocked after 11pm, then turn on the hallway light."
+  },
+  {
+    "id": 115,
+    "text": "If the front door is unlocked after 9 pm, then turn on the bedroom lights."
+  },
+  {
+    "id": 116,
+    "text": "If the front door is open, then turn on the entryway light."
+  },
+  {
+    "id": 117,
+    "text": "If the front door is unlocked after 9 PM, then send a notification to my phone."
+  },
+  {
+    "id": 118,
+    "text": "If the front door is unlocked after 10:00 PM, then send a notification to your phone."
+  },
+  {
+    "id": 119,
+    "text": "If the front door is unlocked, then send a push notification to my phone."
+  },
+  {
+    "id": 120,
+    "text": "If the front door is unlocked after 10 pm, then send a notification to your phone."
+  },
+  {
+    "id": 121,
+    "text": "If the front door opens, then send a notification to the homeowner."
+  },
+  {
+    "id": 122,
+    "text": "If the front door is unlocked after 10 pm, then send a notification to your phone."
+  },
+  {
+    "id": 123,
+    "text": "If the front door is opened, then turn on the hallway light."
+  },
+  {
+    "id": 124,
+    "text": "If the front door is unlocked and it is 10 PM, then turn off all lights and lock the front door."
+  },
+  {
+    "id": 125,
+    "text": "If the front door is unlocked after 9 PM, then turn on the hallway light."
+  },
+  {
+    "id": 126,
+    "text": "If the front door opens, then play a chime sound on the speaker."
+  },
+  {
+    "id": 127,
+    "text": "If the front door is unlocked, then turn on the porch light."
+  },
+  {
+    "id": 128,
+    "text": "If the front door opens, then send a notification to my phone."
+  },
+  {
+    "id": 129,
+    "text": "If the front door is opened, then turn on the hallway light."
+  },
+  {
+    "id": 130,
+    "text": "If the front door is unlocked, then send a notification to my smartphone."
+  },
+  {
+    "id": 131,
+    "text": "If the front door is open for more than 5 minutes, then turn off the hallway light."
+  },
+  {
+    "id": 132,
+    "text": "If the front door opens, then turn on the porch light."
+  },
+  {
+    "id": 133,
+    "text": "If the front door is opened, then turn on the foyer light."
+  },
+  {
+    "id": 134,
+    "text": "If the front door opens, then turn on the hallway light."
+  },
+  {
+    "id": 135,
+    "text": "If the front door is opened, then turn on the hallway light."
+  },
+  {
+    "id": 136,
+    "text": "If the front door is opened, then turn on the hallway light."
+  },
+  {
+    "id": 137,
+    "text": "If the front door opens, then turn on the porch light."
+  },
+  {
+    "id": 138,
+    "text": "If the front door is unlocked, then send a notification to my phone."
+  },
+  {
+    "id": 139,
+    "text": "If the front door opens, then send a notification to my phone."
+  },
+  {
+    "id": 140,
+    "text": "If the front door opens, then turn on the hallway light."
+  },
+  {
+    "id": 141,
+    "text": "If the back door opens, then turn off the kitchen lights."
+  },
+  {
+    "id": 142,
+    "text": "If the front door is opened, then send a notification to my phone."
+  },
+  {
+    "id": 143,
+    "text": "If the front door is unlocked, then turn on the hallway lights."
+  },
+  {
+    "id": 144,
+    "text": "If the front door is opened, then turn on the porch light."
+  },
+  {
+    "id": 145,
+    "text": "If the temperature is above 75 degrees, then turn on the air conditioning."
+  },
+  {
+    "id": 146,
+    "text": "If the humidity level is above 50%, then turn on the dehumidifier."
+  },
+  {
+    "id": 147,
+    "text": "If it's after sunset and the living room motion sensor is tripped, then turn on the TV."
+  },
+  {
+    "id": 148,
+    "text": "If the front door is opened, then turn on the hallway light."
+  },
+  {
+    "id": 149,
+    "text": "If the front door opens after sunset, then turn on the porch lights. "
+  },
+  {
+    "id": 150,
+    "text": "If the smoke detector senses smoke, then turn on all the lights and sirens."
+  },
+  {
+    "id": 151,
+    "text": "If the front door is opened, then turn on the porch light."
+  },
+  {
+    "id": 152,
+    "text": "If the garage door is opened, then turn on the foyer light."
+  },
+  {
+    "id": 153,
+    "text": "If the front door is unlocked, then send a notification to my phone."
+  },
+  {
+    "id": 154,
+    "text": "If the bedroom window is opened, then turn on the fan."
+  },
+  {
+    "id": 155,
+    "text": "If the front door is opened, then send a notification to your phone."
+  },
+  {
+    "id": 156,
+    "text": "If the front door sensor is opened, and it's after sunset, then turn on the porch light."
+  },
+  {
+    "id": 157,
+    "text": "If the front door opens, then turn on the entryway light and send a notification."
+  },
+  {
+    "id": 158,
+    "text": "If a window is opened, then turn off the thermostat in that room."
+  },
+  {
+    "id": 159,
+    "text": "If the front door is unlocked and it is after 10 pm, then turn on the front porch light."
+  },
+  {
+    "id": 160,
+    "text": "If the temperature in the bedroom is below 68 degrees Fahrenheit, then turn on the space heater. If the temperature reaches 70 degrees Fahrenheit, then turn off the space heater."
+  },
+  {
+    "id": 161,
+    "text": "If the front door is locked, then turn off all lights and thermostats in the house."
+  },
+  {
+    "id": 162,
+    "text": "If the front door is unlocked and it is after 10 pm, then send a notification to my phone."
+  },
+  {
+    "id": 163,
+    "text": "If the front door is unlocked and it's after 8pm, then turn off all lights and lower the thermostat."
+  },
+  {
+    "id": 164,
+    "text": "If the front door is unlocked and it is after 10 pm, then send a notification to my phone."
+  },
+  {
+    "id": 165,
+    "text": "If indoor temperature is above 80 degree, then open windows"
+  },
+  {
+    "id": 166,
+    "text": "If the front door is unlocked and it is after 10 PM, then turn off all lights in the house."
+  },
+  {
+    "id": 167,
+    "text": "If the front door contact sensor is opened, then turn on the foyer light and send a notification to the homeowner's phone."
+  },
+  {
+    "id": 168,
+    "text": "If the front door is unlocked after 9pm, then turn on the entryway light and send a notification."
+  },
+  {
+    "id": 169,
+    "text": "Turn on the light at 7 pm"
+  },
+  {
+    "id": 170,
+    "text": "If the front door is unlocked and it's past 10 PM, then turn on the porch light."
+  },
+  {
+    "id": 171,
+    "text": "If the door is unlocked after 7 PM, then turn on the porch light."
+  },
+  {
+    "id": 172,
+    "text": "If the front door is left unlocked after 8 PM, then send a notification to my phone."
+  },
+  {
+    "id": 173,
+    "text": "If the front door is unlocked, then turn on the porch light and a notification is sent to my phone."
+  },
+  {
+    "id": 174,
+    "text": "If the front door opens and it's after sunset, then turn on the porch lights."
+  },
+  {
+    "id": 175,
+    "text": "If the front door is unlocked and it's after 8 pm, then turn on the porch light."
+  },
+  {
+    "id": 176,
+    "text": "If the outside temperature is above 70 degree and time is 11 am, then open windows."
+  },
+  {
+    "id": 177,
+    "text": "If the smoke is detected, unlock the door."
+  },
+  {
+    "id": 178,
+    "text": "If the front door is unlocked and it is after sunset, then turn on the porch light for 10 minutes."
+  },
+  {
+    "id": 179,
+    "text": "If the front door is unlocked, then send a notification to my phone."
+  },
+  {
+    "id": 180,
+    "text": "If the front door is unlocked and it is after 9pm, then send a push notification to my phone."
+  },
+  {
+    "id": 181,
+    "text": "If the front door sensor is triggered, then send a notification to your phone and turn on the porch light."
+  },
+  {
+    "id": 182,
+    "text": "If the temperature drops below 65 degrees Fahrenheit, then turn on the heater. If the temperature rises above 70 degrees Fahrenheit, then turn off the heater."
+  },
+  {
+    "id": 183,
+    "text": "If the front door opens, then turn on the front porch light and send a notification to my phone."
+  },
+  {
+    "id": 184,
+    "text": "If the front door is unlocked and it is after sunset, then turn on the front porch light."
+  }
+]

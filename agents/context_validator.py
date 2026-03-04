@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from typing import List, Optional
 
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from tools.context_fetcher import SystemContext
 from tools.rule_parser import RuleParser
@@ -85,11 +86,14 @@ Do NOT include markdown, code fences, or additional commentary."""
     def __init__(
         self,
         *,
-        model: str = "gpt-4o-mini",
+        model: str = "gemini-3-flash-preview",
         temperature: float = 0.3,  # Lower temperature for more consistent validation
-        llm: ChatOpenAI | None = None,
+        llm: ChatGoogleGenerativeAI | None = None,
     ) -> None:
-        self.llm = llm or ChatOpenAI(model=model, temperature=temperature)
+        api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        self.llm = llm or ChatGoogleGenerativeAI(
+            model=model, temperature=temperature, google_api_key=api_key
+        )
         self.parser = RuleParser()
         # IMPORTANT: Escape JSON braces in SYSTEM_PROMPT so ChatPromptTemplate
         # doesn't treat JSON keys like "verdict" as template variables.
@@ -137,7 +141,13 @@ Do NOT include markdown, code fences, or additional commentary."""
             }
         )
         response = self.llm.invoke(prompt_messages)
-        output = (response.content or "").strip()
+        # Gemini 3 returns content as list of blocks; .text gives string
+        output = getattr(response, "text", None) or response.content
+        if isinstance(output, list):
+            output = "".join(
+                b.get("text", b) if isinstance(b, dict) else str(b) for b in output
+            )
+        output = (output or "").strip()
         
         # Parse response
         parsed = self._parse_output(output)

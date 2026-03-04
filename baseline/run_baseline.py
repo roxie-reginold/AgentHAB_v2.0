@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -34,6 +35,7 @@ def run_baseline_on_dataset(
     temperature: float = 1.5,
     rules_dir: Path | None = None,
     only_id: int | None = None,
+    delay: float = 13.0,
 ) -> None:
     """
     Run a single-shot LLM baseline on the given dataset.
@@ -65,12 +67,36 @@ def run_baseline_on_dataset(
     if rules_dir is not None:
         rules_dir.mkdir(parents=True, exist_ok=True)
 
+    # Load already-completed ids so we can resume without re-calling the API
+    completed_ids: set = set()
+    if output_path.exists():
+        try:
+            with output_path.open("r", encoding="utf-8") as f:
+                existing = json.load(f)
+            for entry in existing:
+                completed_ids.add(entry.get("id"))
+                results.append(entry)
+            if completed_ids:
+                print(f"Resuming – skipping {len(completed_ids)} already-completed id(s).")
+        except Exception:
+            pass
+
+    first_request = True
     for example in examples:
         ex_id = example.get("id")
+        if ex_id in completed_ids:
+            continue
+
         text = example.get("text", "")
         if text is None:
             text = ""
         text = str(text).strip()
+
+        # Throttle to stay within the free-tier RPM limit (default: 13s ≈ 4.6 RPM)
+        if not first_request and delay > 0:
+            print(f"  (waiting {delay}s to respect RPM limit...)")
+            time.sleep(delay)
+        first_request = False
 
         print(f"\n=== Running baseline for id={ex_id} ===")
         print(f"Request: {text}")
@@ -102,6 +128,11 @@ def run_baseline_on_dataset(
             "rule_path": rule_path,
         }
         results.append(result_entry)
+
+        # Write incrementally so progress is never lost on interruption
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with output_path.open("w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as f:
@@ -164,6 +195,16 @@ def parse_args() -> argparse.Namespace:
         metavar="ID",
         help="If set, run only the example with this id (useful for testing).",
     )
+    parser.add_argument(
+        "--delay",
+        type=float,
+        default=13.0,
+        help=(
+            "Seconds to wait between API calls to respect RPM limits "
+            "(default: 13s ≈ 4.6 RPM, safe for the free tier's 5 RPM cap). "
+            "Set to 0 to disable."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -195,6 +236,7 @@ def main() -> None:
         temperature=args.temperature,
         rules_dir=rules_dir,
         only_id=args.only_id,
+        delay=args.delay,
     )
 
 
